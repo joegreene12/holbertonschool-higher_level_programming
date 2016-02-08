@@ -20,13 +20,11 @@ tip = input("What do you want to tip? (in %)")
 
 #math equation using assigned variables to solve total price
 x = price
-y = tax/100
-z = tip/100
+tax = tax/100
+tip = tip/100
 
-newPrice = (x + (x * y))
-tipPrice = (x + (x * y) * z))
-new_total = newPrice + tipPrice
+price = (x + price * tax)
+tip = (x + (x * tax) * tip))
+new_total = price + tip
 
-print newPrice
-print tipPrice
-print new_total
+print ("The price that you need to pay is: $%.6f" %new_total)
