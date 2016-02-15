@@ -1,6 +1,6 @@
-##This is a Python promgram to ease your mind from crunching numbers
-## and keep your wallet from being empty as a tool to figure your cost
-## written by Joe Greene
+""" This is a Python promgram to ease your mind from crunching numbers
+and keep your wallet from being empty as a tool to figure your cost
+written by Joe Greene """
 
 
 # simple print statement with quotes
@@ -20,11 +20,16 @@ tip = input("What do you want to tip? (in %)")
 
 #math equation using assigned variables to solve total price
 x = price
-tax = tax/100
-tip = tip/100
+tax = float(tax)/100
+tip = float(tip)/100
 
-price = (x + price * tax)
-tip = (x + (x * tax) * tip))
-new_total = price + tip
+# price = (x + price * tax)
+# new_total = (price + (price * tip) * tip)
+# new_total = price + tip
 
-print ("The price that you need to pay is: $%.6f" %new_total)
+#new equation to fix script
+newp = price + price * tax
+total = newp + newp * tip
+
+
+print ("The price that you need to pay is: $%.6f" %total)
