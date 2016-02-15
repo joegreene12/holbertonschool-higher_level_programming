@@ -1,4 +1,5 @@
 var https = require('https');
+var fs = require ('fs');
 
 var options = {
 	hostname: 'api.github.com',
@@ -11,8 +12,8 @@ var options = {
 
 var req = https.request(options, function(res) {
 	var cb = function(jsonString) {
-		fs = require ('fs');
-		fs.writeFile('/tmp/43)'
+		fs.writeFile('/tmp/43');
+		
 		// console.log(typeof jsonString);
 		// console.log(jsonString);
 		console.log("The file was saved!");
