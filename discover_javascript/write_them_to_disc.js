@@ -11,11 +11,14 @@ var options = {
 }
 
 var req = https.request(options, function(res) {
+	/*  res.on('data', function(d) {
+		 process.stdout.write(d);
+		 // console.log('hello');
+		 });*/
 	var cb = function(jsonString) {
-		fs.writeFile('/tmp/43');
-		
-		// console.log(typeof jsonString);
-		// console.log(jsonString);
+	  /* console.log(typeof jsonString);
+		 console.log(jsonString); */
+		 fs.writeFile('/tmp/43', jsonString);
 		console.log("The file was saved!");
 	}
 	streamToString(res, cb);

@@ -1,40 +1,42 @@
 var https = require('https');
+var fs=require('fs');
 
 var options = {
-	hostname: 'api.github.com',
-	path: 'https://api.github.com/search/repositories?q=language:javascript&sort=stars&order=desc',
-	headers: {
-		'User-Agent': 'Holberton_School',
-		'Authorization': 'token 238f25e2cc39a2c46ef88993ce49bffbbda6d7f4'
-	}
-}
+    host: 'api.github.com',
+    path: '/search/repositories?q=language:javascript&sort=stars&order=desc',
+    headers: {
+    'User-Agent': 'Holberton_School',
+    'Authorization': 'token ' + process.env.TOKEN
+  }
+};
 
 var req = https.request(options, function(res) {
-	var cb = function(jsonString) {
-		// console.log(typeof jsonString);
-		// console.log(jsonString);
-		console.log("The file was saved!");
-	}
-	streamToString(res, cb);
+    var cb=function(jsonString){
+	fs.writeFile('/tmp/37', jsonString);
+	var parsedData= JSON.parse(jsonString);
+	var repos=parsedData['items'].map(function(obj){
+	  return(obj.name);
 
-	// console.log(res.statusCode);
-	// res.on('data', function(d) {
-	// 	process.stdout.write(d);
-	// });
+	}).join('\n');
+	console.log(repos);
+    }
+
+    streamToString(res,cb);
+
+
 });
 req.end();
-//console.log(req._headers);
 
 req.on('error', function(e) {
-	console.error(e);
+    console.error(e);
 });
 
 function streamToString(stream, cb) {
-  const chunks = [];
-  stream.on('data', (chunk) => {
-    chunks.push(chunk);
-  });
-  stream.on('end', () => {
-    cb(chunks.join(''));
-  });
+    const chunks = [];
+    stream.on('data', (chunk) => {
+	chunks.push(chunk);
+    });
+    stream.on('end', () => {
+	cb(chunks.join(''));
+    });
 }
