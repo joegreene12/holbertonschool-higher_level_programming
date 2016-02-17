@@ -6,7 +6,7 @@ var options = {
     path: '/search/repositories?q=language:javascript&sort=stars&order=desc',
      headers: {
     'User-Agent': 'Holberton_School',
-    'Authorization': 'token bd59c3c9a475b797ea855b3e1e1542828afc96aa'
+    'Authorization': 'token 238f25e2cc39a2c46ef88993ce49bffbbda6d7f4'
   }
 };
 
