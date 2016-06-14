@@ -56,7 +56,7 @@ elif sys.argv[1] == "print_batch_by_school":
 
     try:
         if School.select().where(School.id == schooltableID).count() == 0:
-            schooltableID = int(sys.argv[2])
+            schooltableID = int(sys.argv[2]) 
             for k in School.select().where(School.id == schooltableID):
                 print "School not found"
     except:
